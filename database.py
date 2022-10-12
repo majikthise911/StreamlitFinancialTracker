@@ -1,13 +1,14 @@
-import os 
-from deta import Deta # pip install deta
-from dotenv import load_dotenv #pip install python-dotenv
+import streamlit as st  # pip install streamlit
+from deta import Deta  # pip install deta
 
-# Load the environment variables 
-load_dotenv(".env")
-DETA_KEY = os.getenv("DETA_KEY")
 
+# Load the environment variables
+DETA_KEY = st.secrets["DETA_KEY"]
+
+# Initialize with a project key
 deta = Deta(DETA_KEY)
 
+# This is how to create/connect a database
 db = deta.Base("monthly_reports")
 
 def insert_period(period, incomes, expenses, comment): # in order to insert the peirod we have to find the four parameters in the ()
